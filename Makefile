@@ -29,6 +29,9 @@ else
 	python -m unittest discover -s tests
 endif
 
+coverage:
+	@coverage run -m unittest
+	@coverage report
 
 # Delete the python modules' caches
 clean:
