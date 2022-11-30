@@ -4,29 +4,23 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      OS: ubuntu-latest
-      PYTHON: '3.9'
     steps:
-    - uses: checkout@v2
-      with:
-        fetch-depth: ‘2’
-
-    - name: Setup Python
-      uses: actions/setup-python@main
+    - uses: actions/checkout@v2
+    - name: Setting up Python 3.11
+      uses: actions/setup-python@v1
       with:
         python-version: 3.11
-    - name: Generate Report
-      run: |
-        pip install coverage
-        coverage run -m unittest
+
+    - name: Unit tests
+      run: make test
+
     - name: Coveralls
       uses: AndreMiras/coveralls-python-action@develop
       with:
         parallel: true
         flag-name: Unit Test
 
-  - coveralls_finish:
+  coveralls_finish:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -34,3 +28,4 @@ jobs:
       uses: AndreMiras/coveralls-python-action@develop
       with:
         parallel-finished: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
