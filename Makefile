@@ -5,7 +5,7 @@ install:
 ifdef edit
 	python -m pip install -e .
 else
-	python setup.py install
+	python -m pip install .
 endif
 
 

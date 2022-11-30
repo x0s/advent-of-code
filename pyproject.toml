@@ -1,3 +1,32 @@
 [build-system]
-# Minimum requirements for the build system to execute.
-requires = ["setuptools", "wheel"]  # PEP 508 specifications.
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "advent_of_code"
+description = "Solving the Advent of Code"
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["advent-of-code", "challenge"]
+license = {text = "AGPL-3.0-or-later"}
+authors = [ {name = "x0s", email = "x0s@users.noreply.github.com"} ]
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Operating System :: POSIX",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "requests",
+    "coverage",
+]
+dynamic = ["version"]
+
+[tool.setuptools.packages.find]
+include = ["advent_of_code"]
+
+[project.urls]
+repository = "https://github.com/x0s/advent_of_code"
+tracker = "https://github.com/x0s/advent-of-code/issues"
