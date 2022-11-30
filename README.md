@@ -27,6 +27,24 @@ Token saved in advent_of_code/config.toml
 
 This file is ignored by git, preventing to push your personal token online ;)
 
+### 4. Launch a game
+There are games in two parts every day of the advent for a given year.
+For instance, the following command will launch part 1 of the game issued the 13th, December 2021:
+```
+(advent)$ make game WHEN=2021/13-1
+```
+For now, the available games are:
+
+- 2021: days=[02] parts 1 and 2
+
+
+### 5. Launch the tests
+Launch the test and choose if you want the details of the test suite
+```
+(advent)$ make test
+(advent)$ make test verbose=1
+```
+
 
 ## Troubleshooting
 ### Mamba asking you to `mamba init`
