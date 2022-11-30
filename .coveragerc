@@ -1,0 +1,10 @@
+[report]
+omit =
+       # Exclude every tests from coverage
+       */tests/*
+
+# Show missing (uncovered) lines
+show_missing = True
+
+[run]
+relative_files = True
