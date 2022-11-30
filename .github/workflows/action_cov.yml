@@ -17,7 +17,9 @@ jobs:
         make install
     
     - name: Unit tests
-      run: make test
+      run: |
+        coverage run -m unittest
+        coverage report
 
     - name: Coveralls
       uses: AndreMiras/coveralls-python-action@develop
