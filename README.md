@@ -1,5 +1,10 @@
 # Advent-of-code
 
+[![](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![](https://github.com/x0s/advent-of-code/actions/workflows/action_cov.yml/badge.svg)]()
+[![](https://coveralls.io/repos/github/x0s/advent-of-code/badge.svg?branch=main)](https://coveralls.io/github/x0s/advent-of-code?branch=main)
+[![](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+
 Here is a project where you can find the python scripts I imagined to solve the [advent-of-code](https://adventofcode.com/) games. Feel free to open an [Issue](https://github.com/x0s/advent-of-code/issues) if you want to discuss the algorithms or ask for help. Have fun!
 
 ## Install guidance
