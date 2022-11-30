@@ -6,5 +6,9 @@ omit =
 # Show missing (uncovered) lines
 show_missing = True
 
+# Script cannot be tested offline(requires token)
+exclude_lines =
+    if __name__ == .__main__.:
+
 [run]
 relative_files = True
