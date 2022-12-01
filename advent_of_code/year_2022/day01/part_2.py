@@ -1,11 +1,11 @@
 from advent_of_code.config import get_input
 from advent_of_code.logging import log
-from .part_1 import sum_perf_elf
+from .part_1 import sum_per_elf
 
    
 def part_two(input_raw: str) -> int:
     """Find total Calories carried by the three Elves carrying the most"""
-    return sum(sorted(sum_perf_elf(input_raw))[-3:])
+    return sum(sorted(sum_per_elf(input_raw))[-3:])
 
 
 def main() -> int:

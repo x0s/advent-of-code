@@ -10,12 +10,7 @@ from advent_of_code.year_2021.day02 import (part_1,
 
 @contextmanager
 def mocked_get_input(year, day):
-    yield """forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2"""
+    yield "forward 5\ndown 5\nforward 8\nup 3\ndown 8\nforward 2"
 
 class TestExamples(TestCase):
 

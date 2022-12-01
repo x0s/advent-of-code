@@ -2,13 +2,13 @@ from advent_of_code.config import get_input
 from advent_of_code.logging import log
 
 
-def sum_perf_elf(input_raw: str) -> list[int]:
+def sum_per_elf(input_raw: str) -> list[int]:
     """Compute the sum of calories carried by each elf"""
     return [sum(map(int, elf_cal.split('\n'))) for elf_cal in input_raw.strip().split("\n\n")]
     
 def part_one(input_raw: str) -> int:
     """Find the maximum calories carried by one elf"""
-    return max(sum_perf_elf(input_raw))
+    return max(sum_per_elf(input_raw))
 
 
 def main() -> int:
