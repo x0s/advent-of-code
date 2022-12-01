@@ -7,7 +7,8 @@ from advent_of_code.logging import log
 #log.setLevel('DEBUG')
 
 def process_all_moves(moves: list[list[str, str]]) -> tuple[int, int, int]:
-
+    """From a list a moves, will determine the final 
+    position, depth and product of the submarine"""
     # we store moves as cumulative sums
     moves_cumsum = defaultdict(int)
 

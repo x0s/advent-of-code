@@ -3,7 +3,8 @@ from advent_of_code.logging import log
 
 
 def process_all_moves(moves: list[list[str, str]]) -> tuple[int, int, int, int]:
-    
+    """From a list a moves, will determine the final 
+    position, depth, aim and product of the submarine"""
     aim = depth = position = 0
 
     for move in moves:
@@ -20,7 +21,7 @@ def process_all_moves(moves: list[list[str, str]]) -> tuple[int, int, int, int]:
     return position, depth, aim, position*depth
 
 
-def main():
+def main() -> tuple[int, int, int]:
     with get_input(year=2021, day=2) as moves_raw:
         moves = list(move.split(' ') for move in moves_raw.strip().split('\n'))
 

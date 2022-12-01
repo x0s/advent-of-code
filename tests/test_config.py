@@ -31,7 +31,7 @@ class TestExamples(TestCase):
         cls.enterClassContext(
             patch('builtins.open', mock_open(read_data=cls.config_toml_fixture)))
         cls.enterClassContext(
-             patch('advent_of_code.config.requests.get', side_effect=mocked_requests_get))
+            patch('advent_of_code.config.requests.get', side_effect=mocked_requests_get))
 
         super().setUpClass()
 
