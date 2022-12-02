@@ -40,8 +40,8 @@ For instance, the following command will launch part 1 of the game issued the 13
 ```
 For now, the available games are:
 
-- 2022: days=[01]
-- 2021: days=[02]
+- 2022: days=[01, 02]
+- 2021: days=[01, 02]
 
 
 ### 5. Launch the tests

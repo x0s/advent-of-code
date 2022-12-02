@@ -21,6 +21,8 @@ classifiers = [
 dependencies = [
     "requests",
     "coverage",
+    "pandas",
+    "numpy",
 ]
 dynamic = ["version"]
 
