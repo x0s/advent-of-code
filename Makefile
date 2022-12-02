@@ -15,7 +15,7 @@ help:
 # Install the package in editable mode or not
 .PHONY: install
 install:
-ifdef edit
+ifdef EDIT
 	python -m pip install -e .
 else
 	python -m pip install .

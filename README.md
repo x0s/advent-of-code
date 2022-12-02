@@ -20,7 +20,7 @@ $ mamba activate advent
 (advent)$ git clone git@github.com:x0s/advent-of-code.git
 (advent)$ make install
 ```
-If you want to contribute and/or see your changes reflected, you may prefer to install in editable mode with `make install edit=1`
+If you want to contribute and/or see your changes reflected, you may prefer to install in editable mode with `make install EDIT=1`
 
 ### 3. Set token to be able to retrieve your game inputs
 [Here](https://github.com/wimglenn/advent-of-code-wim/issues/1) is a nice explanation how to get the token. Then, generate the config file, replacing `<YOUR_TOKEN>`:
