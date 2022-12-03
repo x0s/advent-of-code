@@ -34,7 +34,7 @@ config:
 .ONESHELL:
 game:
 	@read AOC_YEAR AOC_DAY AOC_PART <<< $$(echo '$(WHEN)' | perl -pe 's/(20\d{2})\/([01][0-9]|2[0-5])-([12])/$$1 $$2 $$3/')
-	python advent_of_code/year_$$AOC_YEAR/day$$AOC_DAY/part_$$AOC_PART.py
+	python advent_of_code/year_$$AOC_YEAR/day_$$AOC_DAY/part_$$AOC_PART.py
 
 
 # Launch the tests with verbose or not
