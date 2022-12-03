@@ -3,8 +3,8 @@ from advent_of_code.logging import log
 
 
 class SolutionOne:
-    @classmethod
-    def sum_per_elf(cls, input_raw: str) -> list[int]:
+    @staticmethod
+    def sum_per_elf(input_raw: str) -> list[int]:
         """Compute the sum of calories carried by each elf"""
         return [sum(map(int, elf_cal.split('\n'))) for elf_cal in input_raw.strip().split("\n\n")]
         
