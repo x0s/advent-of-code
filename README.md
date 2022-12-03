@@ -48,7 +48,7 @@ For now, the available games are:
 Launch the test and choose if you want the details of the test suite
 ```
 (advent)$ make test
-(advent)$ make test verbose=1
+(advent)$ make test VERBOSE=1
 ```
 
 

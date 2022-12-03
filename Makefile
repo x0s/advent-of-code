@@ -40,7 +40,7 @@ game:
 # Launch the tests with verbose or not
 .PHONY: test
 test:
-ifdef verbose
+ifdef VERBOSE
 	python -m unittest discover -v -s tests
 else
 	python -m unittest discover -s tests
