@@ -4,8 +4,8 @@ from contextlib import contextmanager
 from unittest import TestCase
 from unittest.mock import patch
 
-from advent_of_code.year_2022.day02 import (part_1,
-                                            part_2)
+from advent_of_code.year_2022.day_02 import (part_1,
+                                             part_2)
 
 
 @contextmanager
@@ -19,9 +19,9 @@ class TestExamples(TestCase):
         
         # We set up the same fixture input for all test case(part 1 and 2), py>=3.11
         cls.enterClassContext(
-            patch('advent_of_code.year_2022.day02.part_1.get_input', side_effect=mocked_get_input))
+            patch('advent_of_code.year_2022.day_02.part_1.get_input', side_effect=mocked_get_input))
         cls.enterClassContext(
-            patch('advent_of_code.year_2022.day02.part_2.get_input', side_effect=mocked_get_input))
+            patch('advent_of_code.year_2022.day_02.part_2.get_input', side_effect=mocked_get_input))
 
         super().setUpClass()
 
