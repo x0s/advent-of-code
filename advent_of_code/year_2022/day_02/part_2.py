@@ -12,9 +12,9 @@ class SolutionTwo:
     my_moves = {(elf,gain): me for (elf,me),gain in SolutionOne.gains.items()}
 
     @classmethod
-    def process(self, input_raw: str) -> int:
+    def process(cls, input_raw: str) -> int:
         """Compute the total gain guessing the outcome of each game(gain)"""
-        return SolutionOne.compute_gains(input_raw, self.letter_to_gain, self.my_moves) 
+        return SolutionOne.compute_gains(input_raw, cls.letter_to_gain, cls.my_moves) 
 
 
 def main() -> int:

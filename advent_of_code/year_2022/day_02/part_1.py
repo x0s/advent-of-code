@@ -5,9 +5,9 @@ from advent_of_code.logging import log
 
 
 class SolutionOne:
-    letter_to_val = {'A': '1', 'X': '1',
-                     'B': '2', 'Y': '2',
-                     'C': '3', 'Z': '3'}
+    letter_to_val = {'A': '1', 'X': '1',  # Rock
+                     'B': '2', 'Y': '2',  # Paper
+                     'C': '3', 'Z': '3'}  # Scissors
     
     gains = {(3,1):6, (2,3):6, (1,2):6, # Win situations weight=6
              (1,3):0, (3,2):0, (2,1):0, # Loose  situations weight=0
