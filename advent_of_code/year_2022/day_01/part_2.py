@@ -4,8 +4,9 @@ from advent_of_code.year_2022.day_01.part_1 import SolutionOne
 
 
 class SolutionTwo:
-    @classmethod
-    def process(cls, input_raw: str) -> int:
+    
+    @staticmethod
+    def process(input_raw: str) -> int:
         """Find total Calories carried by the three Elves carrying the most"""
         return sum(sorted(SolutionOne.sum_per_elf(input_raw))[-3:])
 

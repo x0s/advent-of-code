@@ -5,8 +5,8 @@ from advent_of_code.year_2022.day_03.part_1 import SolutionOne
 
 class SolutionTwo:
     
-    @classmethod
-    def process(self, input_raw: str) -> int:
+    @staticmethod
+    def process(input_raw: str) -> int:
         """Compute the priority sums"""
         sacks = input_raw.strip().split('\n')
         return sum([SolutionOne.priority((set(sacks[i]) & set(sacks[i+1]) & set(sacks[i+2])).pop()) for i,_ in enumerate(sacks) if i%3==0 ])

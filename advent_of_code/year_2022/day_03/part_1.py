@@ -9,9 +9,9 @@ class SolutionOne:
         return ord(c)-96 if c.islower() else ord(c)-38
 
     @classmethod
-    def process(self, input_raw: str) -> int:
+    def process(cls, input_raw: str) -> int:
         """Compute the priority sums"""
-        return sum([self.priority((set(sack[:len(sack)//2]) & set(sack[len(sack)//2:])).pop()) for sack in input_raw.strip().split('\n')])
+        return sum([cls.priority((set(sack[:len(sack)//2]) & set(sack[len(sack)//2:])).pop()) for sack in input_raw.strip().split('\n')])
 
 
 def main() -> int:
