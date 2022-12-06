@@ -1,5 +1,4 @@
 import re
-from collections import deque
 
 from advent_of_code.config import get_input
 from advent_of_code.logging import log
@@ -10,7 +9,7 @@ class SolutionTwo(SolutionOne):
     
     @classmethod
     def process(cls, input_raw: str) -> int:
-        """How many elf pairs have fully overlapping asignements ?"""
+        """What are the craters at stacks' tops after the moves ?"""
         # Treat Stacks and Moves separately 
         stacks_raw, moves_raw = input_raw.rstrip().split('\n\n')
         stacks, moves = cls.get_stacks(stacks_raw), cls.get_moves(moves_raw)

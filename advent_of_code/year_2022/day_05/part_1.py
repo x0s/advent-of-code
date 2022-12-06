@@ -9,9 +9,9 @@ from advent_of_code.logging import log
 class SolutionOne:
     
     @staticmethod
-    def make_moves(stacks: dict[int,deque[str]], moves: list[list[int]], crate_9001 = False) -> None:
+    def make_moves(stacks: dict[int,deque[str]], moves: list[list[int]], crate_9001: bool = False) -> None:
         """Update in-place the stacks according to the moves"""
-        reverse = lambda stack: reversed(stack) if crate_9001 is True else stack
+        reverse = lambda stack: reversed(stack) if crate_9001 else stack
         
         for n_crates,from_,to_ in moves:
             stacks[to_].extendleft(reverse([stacks[from_].popleft() for _ in range(n_crates)]))  
@@ -22,7 +22,7 @@ class SolutionOne:
                     [D]          {1: deque(['N', 'Z']),
         from    [N] [C]      to   2: deque(['D', 'C', 'M']),
                 [Z] [M] [P]       3: deque(['P'])}
-                1   2   3 
+                 1   2   3 
         """
         *stacks_lines, stacks_i = stacks_raw.splitlines()
         n_stacks = int(stacks_i.split()[-1])
@@ -49,7 +49,7 @@ class SolutionOne:
 
     @classmethod
     def process(cls, input_raw: str) -> int:
-        """How many elf pairs have fully overlapping asignements ?"""
+        """What are the craters at stacks' tops after the moves ?"""
         # Treat Stacks and Moves separately 
         stacks_raw, moves_raw = input_raw.rstrip().split('\n\n')
         stacks, moves = cls.get_stacks(stacks_raw), cls.get_moves(moves_raw)
