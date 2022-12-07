@@ -8,8 +8,11 @@ from advent_of_code.logging import log
 
 class SolutionOne:
     
+    StacksType = dict[int,deque[str]]
+    MovesType = list[Iterator[int]]
+
     @staticmethod
-    def make_moves(stacks: dict[int,deque[str]], moves: list[list[int]], crate_9001: bool = False) -> None:
+    def make_moves(stacks: StacksType, moves: MovesType, crate_9001: bool = False) -> None:
         """Update in-place the stacks according to the moves"""
         reverse = lambda stack: reversed(stack) if crate_9001 else stack
         
@@ -17,7 +20,7 @@ class SolutionOne:
             stacks[to_].extendleft(reverse([stacks[from_].popleft() for _ in range(n_crates)]))  
 
     @staticmethod
-    def get_stacks(stacks_raw: str) -> dict[int,deque[str]]:
+    def get_stacks(stacks_raw: str) -> StacksType:
         """
                     [D]          {1: deque(['N', 'Z']),
         from    [N] [C]      to   2: deque(['D', 'C', 'M']),
@@ -31,7 +34,7 @@ class SolutionOne:
                     zip(*[[line[i].strip() for i in range(1,len(line),4)] for line in stacks_lines]))}
 
     staticmethod
-    def get_moves(moves_raw: str) -> list[Iterator[int]]:
+    def get_moves(moves_raw: str) -> MovesType:
         """
         from  "move 1 from 2 to 1   to  [[1, 2, 1], [3, 1, 3]]
                move 3 from 1 to 3"
@@ -39,7 +42,7 @@ class SolutionOne:
         return [map(int,re.split('move\s|\sfrom\s|\sto\s',move)[1:]) for move in moves_raw.splitlines()]
         
     @staticmethod
-    def get_top_crates(stacks) -> str:
+    def get_top_crates(stacks: StacksType) -> str:
         """
               {1: deque(['N', 'Z']),
         from   2: deque(['D', 'C', 'M']), to 'NDP'
