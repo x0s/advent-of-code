@@ -23,7 +23,10 @@ class TestExamples(TestExamplesMain):
     def test_part2(self):
         """Test if example from part 2 problem statement works"""
         self.assertEqual(part_2.main(), 24933642)
-
+    
+    def test_max_capped_sum(self):
+        sizes = [94_853, 584, 10_000]
+        self.assertEqual(part_1.SolutionOne.max_capped_sum(sizes, ceiling=100_000), 95437)
 
 if __name__ == "__main__":
     unittest.main()
