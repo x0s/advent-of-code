@@ -23,6 +23,7 @@ dependencies = [
     "coverage",
     "pandas",
     "numpy",
+    "networkx"
 ]
 dynamic = ["version"]
 
