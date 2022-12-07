@@ -9,49 +9,34 @@ from advent_of_code.logging import log
 
 class SolutionOne:
     
-    # A call is a command followed by results
-    CallType = list[str]
-
     @staticmethod
-    def infer_calls(input_raw: str) -> list[CallType]:
-        """
-              $ cd e       [['cd e'],
-        from  $ ls    to    ['ls', '584 i', 'dir f'], 
-              584 i         ['cd ..']]
-              dir f
-              $ cd ..
-        """
-        return [call_raw.strip().split('\n') for call_raw in input_raw.split('$ ')[1:]][1:]
-    
-    @staticmethod
-    def infer_tree(calls: list[CallType]) -> nx.DiGraph:
+    def infer_tree(input_raw: str) -> nx.DiGraph:
         """Infer directed files tree view according to the calls"""
         G = nx.DiGraph()
         top_node = '/'
 
-        for command, *results in calls:
-            if command == "cd ..":
-                # Move UP top_node
-                top_node = list(G.predecessors(top_node))[0] # only one pred in Tree
+        for call in input_raw.rstrip().split('\n'):
+            match call.split():
+                case ['$', 'ls']: pass
 
-            elif command.startswith("cd"):  
-                # (top_node=//a) cd e ---> (top_node=//a/e)
-                bottom_node = f"{top_node}/{command.split(' ')[1]}"
+                case ['$', 'cd', '..'] :
+                    # Move UP top_node
+                    top_node = list(G.predecessors(top_node))[0] # only one pred in Tree
 
-                G.add_edge(top_node, bottom_node)
+                case ['$', 'cd', directory]:
+                    bottom_node = f"{top_node}/{directory}"
+                    G.add_edge(top_node, bottom_node)
+                    # Move DOWN top_node
+                    top_node = bottom_node
+                
+                case ['dir', directory]:
+                    bottom_node = f"{top_node}/{directory}"
+                    G.add_edge(top_node, bottom_node)
 
-                # Move DOWN top_node
-                top_node = bottom_node
+                case [size, filename]:
+                    bottom_node = f"{top_node}/{filename}"
+                    G.add_edge(top_node, bottom_node, size=int(size))
 
-            elif command.startswith("ls"):
-                # 'dir e', '29116 f', '2557 g', '62596 h.lst'
-                for result in results:
-                    size, bottom_node = result.split(' ')
-                    bottom_node = f"{top_node}/{bottom_node}"
-                    try:
-                        G.add_edge(top_node, bottom_node, size=int(size))
-                    except ValueError: # dir
-                        G.add_edge(top_node, bottom_node)
         return G
     
 
@@ -88,11 +73,8 @@ class SolutionOne:
 
     @classmethod
     def process(cls, input_raw: str) -> int:
-        # Extract the calls from input
-        calls = cls.infer_calls(input_raw)
-
         # Infer the graph from the commands execution
-        G = cls.infer_tree(calls)
+        G = cls.infer_tree(input_raw)
 
         # Compute the size of the directories (update the graph)
         cls.compute_size(G, '/')

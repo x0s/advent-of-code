@@ -7,11 +7,8 @@ class SolutionTwo(SolutionOne):
  
     @classmethod
     def process(cls, input_raw: str) -> tuple[int, int]:
-        # Extract the calls from input
-        calls = cls.infer_calls(input_raw)
-
         # Infer the graph from the commands execution
-        G = cls.infer_tree(calls)
+        G = cls.infer_tree(input_raw)
 
         # Compute the size of the directories (update the graph)
         occupied = cls.compute_size(G, '/')
