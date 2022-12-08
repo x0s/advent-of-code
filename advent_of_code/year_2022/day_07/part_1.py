@@ -36,7 +36,6 @@ class SolutionOne:
                 case [size, filename]:
                     bottom_node = f"{top_node}/{filename}"
                     G.add_edge(top_node, bottom_node, size=int(size))
-
         return G
     
 
