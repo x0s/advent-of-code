@@ -1,3 +1,4 @@
+from collections.abc import Iterator
 from io import StringIO
 from itertools import product
 
@@ -21,7 +22,7 @@ class SolutionOne:
         return np.genfromtxt(StringIO(input_raw), delimiter=1, dtype=int)
     
     @staticmethod
-    def iter_trees(shape_x, shape_y):
+    def iter_trees(shape_x: int, shape_y: int) -> Iterator[tuple[int, int]]:
         """Yield (x,y) of trees NOT at the edges"""
         yield from product(range(1, shape_x-1), range(1, shape_y-1))
 
@@ -31,7 +32,7 @@ class SolutionOne:
         forest = cls.get_forest(input_raw)
         
         # Let's already count the trees at the edge
-        n_visible : int = 2*(forest.shape[0] + forest.shape[1] - 2)
+        n_visible : int = 2*(sum(forest.shape) - 2)
         
         # how many trees are visible from outside the grid?
         n_visible += sum(cls.is_visible(tree_x, tree_y, forest) for tree_x,tree_y in cls.iter_trees(*forest.shape))
