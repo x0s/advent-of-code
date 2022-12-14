@@ -34,13 +34,13 @@ This file is ignored by git, preventing to push your personal token online ;)
 
 ### 4. Launch a game
 There are games in two parts every day of the advent for a given year.
-For instance, the following command will launch part 1 of the game issued the 13th, December 2021:
+For instance, the following command will launch part 1 of the game issued the 13th, December 2022:
 ```
-(advent)$ make game WHEN=2021/13-1
+(advent)$ make game WHEN=2022/13-1
 ```
 For now, the available games are:
 
-- 2022: days=[01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13]
+- 2022: days=[01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14]
 - 2021: days=[01, 02]
 
 
