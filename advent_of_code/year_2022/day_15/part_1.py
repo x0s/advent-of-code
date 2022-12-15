@@ -38,7 +38,7 @@ class SolutionOne:
         return total
 
     @classmethod
-    def process(cls, input_raw) -> int:
+    def process(cls, input_raw, y_row) -> int:
         coords = [list(map(int,re.findall('-?\d+\.?\d*', line))) for line in input_raw.splitlines()]
         
         if NUMBA_AVAILABLE:
@@ -56,7 +56,7 @@ class SolutionOne:
         x_min = min([xS-d for (xS, _),d in sensor_dist.items()])
         x_max = max([xS+d for (xS, _),d in sensor_dist.items()])
         
-        y_row = 2_000_000
+        
         if NUMBA_AVAILABLE:
             n_occupied = cls.get_n_occupied(sensor_dist, x_min, x_max, y_row)
         else:
@@ -65,10 +65,10 @@ class SolutionOne:
         return n_occupied - n_beacons
 
 
-def main() -> int:
+def main(y_row: int = 2_000_000) -> int:
     with get_input(year=2022, day=15) as input_raw:
        
-        total = SolutionOne.process(input_raw)
+        total = SolutionOne.process(input_raw, y_row)
 
         log.info(f"In the row where y=2000000, how many positions cannot contain a beacon?= {total}")
 
