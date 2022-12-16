@@ -47,7 +47,7 @@ class SolutionOne:
                     value_type = types.int64)
             
             for (xS,yS,xB,yB) in coords:
-                sensor_dist[(xS, yS)] = d((xS, yS), (xB, yB))
+                sensor_dist[(xS, yS)] = cls.d((xS, yS), (xB, yB))
         else:
             sensor_dist = {(xS, yS): cls.d((xS, yS), (xB, yB)) for (xS, yS,xB, yB) in coords}
         

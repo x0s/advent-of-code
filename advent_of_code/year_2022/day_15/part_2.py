@@ -41,7 +41,7 @@ class SolutionTwo(SolutionOne):
                 # is this border point part of another surface ?
                 if (not 0 <= x <= val_max) or (not 0 <= y <= val_max): continue
                 for (xS_neighbour, yS_neighbour),dS_neighbour in sensor_dist.items():
-                    if d((x, y), (xS_neighbour, yS_neighbour)) <= dS_neighbour:
+                    if cls.d((x, y), (xS_neighbour, yS_neighbour)) <= dS_neighbour:
                         found = False
                         beacon = (0, 0)
                         break
@@ -65,7 +65,7 @@ class SolutionTwo(SolutionOne):
                 value_type = types.int64)
         
         for (xS,yS,xB,yB) in coords:
-            sensor_dist[(xS, yS)] = d((xS, yS), (xB, yB))
+            sensor_dist[(xS, yS)] = cls.d((xS, yS), (xB, yB))
         
         beacon = cls.search_beacon(sensor_dist, y_row=4_000_000)
 
