@@ -1,5 +1,3 @@
-import re
-
 from advent_of_code.config import get_input
 from advent_of_code.logging import log
 from advent_of_code.year_2022.day_05.part_1 import SolutionOne
