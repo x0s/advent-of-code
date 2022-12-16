@@ -1,6 +1,6 @@
 import re
 
-NUMBA_AVAILABLE = True
+NUMBA_AVAILABLE : bool = True
 try:
     from numba import njit
     from numba.core import types
@@ -27,7 +27,7 @@ class SolutionOne:
 
     @try_numba
     @classmethod
-    def get_n_occupied(cls, sensor_dist, x_min, x_max, y_row):
+    def get_n_occupied(cls, sensor_dist: dict[tuple, int], x_min: int, x_max: int, y_row: int) -> int:
         total = 0
         for x in range(x_min, x_max+1):
             found = False
@@ -38,7 +38,7 @@ class SolutionOne:
         return total
 
     @classmethod
-    def process(cls, input_raw, y_row) -> int:
+    def process(cls, input_raw: str, y_row: int) -> int:
         coords = [list(map(int,re.findall('-?\d+\.?\d*', line))) for line in input_raw.splitlines()]
         
         if NUMBA_AVAILABLE:

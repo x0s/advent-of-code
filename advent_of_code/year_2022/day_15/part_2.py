@@ -30,7 +30,7 @@ class SolutionTwo(SolutionOne):
 
     @try_numba
     @classmethod
-    def search_beacon(cls, sensor_dist, val_max=20):
+    def search_beacon(cls, sensor_dist: dict[tuple, int], val_max: int=20):
         directions = {(+1, +1), (-1, +1), (-1, -1), (+1, -1)}
         beacon = (0, 0)
         
@@ -54,7 +54,7 @@ class SolutionTwo(SolutionOne):
         return beacon
    
     @classmethod
-    def process(cls, input_raw) -> int:
+    def process(cls, input_raw: str) -> int:
         if not NUMBA_AVAILABLE:
             raise NotImplementedError("Numba is required for this solution")
 
