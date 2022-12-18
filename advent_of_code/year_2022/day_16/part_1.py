@@ -1,7 +1,7 @@
 import heapq
 import re
 
-from collections import namedtuple
+from dataclasses import dataclass
 from typing import Iterable
 
 import networkx as nx
@@ -10,7 +10,12 @@ from advent_of_code.config import get_input
 from advent_of_code.logging import log
 
 
-State = namedtuple("State", ["valve", "time_remaining", "pressure", "closed_valves"])
+@dataclass(frozen=True, order=True)
+class State:
+    valve: str
+    time_remaining: int
+    pressure: int
+    closed_valves : frozenset
 
 class Volcano:
     
@@ -39,7 +44,6 @@ class Volcano:
         It is of course not possible, but that's a good heuristic to estimate the potential gain from a state, 
         therefore helping priorizing the moves"""
         pressure_upper_bound = 0
-        # For each 
         for valve_to in state.closed_valves:
             # How many moves + 1(opening the valve) is it needed to release pressure at valve_to ?
             distance = self.distances[state.valve][valve_to]
@@ -116,7 +120,7 @@ def main() -> int:
        
         total = SolutionOne.process(input_raw)
 
-        log.info(f"How many units of sand come to rest before sand starts flowing into the abyss below?= {total}")
+        log.info(f"What is the most pressure you can release? {total}")
 
         # we return what's been asked
         return total
