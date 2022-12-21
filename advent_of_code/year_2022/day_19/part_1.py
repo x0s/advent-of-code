@@ -34,7 +34,7 @@ class Ressource:
 
 @dataclass(slots=True)
 class RobotCollection:
-    ore: int = 1
+    ore: int = 0
     clay: int = 0
     obsidian: int = 0
     geode: int = 0
@@ -64,8 +64,7 @@ class Factory:
         # Max number of geodes that could be collected using this blueprint
         self.max_geodes = 0
         self.minutes = 0
-        self.robots = RobotCollection()
-        self.robot_specialties = [f.name for f in fields(self.robots)]
+        self.robot_specialties = [spe.name for spe in fields(RobotCollection)]
         self.ressources = Ressource()
     
     @property
@@ -95,10 +94,10 @@ class Factory:
         self.max_geodes = 0
 
         for robot_candidate in self.robot_specialties:
-            self._explore(minutes, robot_candidate, RobotCollection(), Ressource())
+            self._explore(minutes, robot_candidate, RobotCollection(ore=1), Ressource())
         return self
     
-    def _explore(self, minutes: int, robot_candidate: str, robots : RobotCollection, ressources: Ressource) -> None
+    def _explore(self, minutes: int, robot_candidate: str, robots : RobotCollection, ressources: Ressource) -> None:
         # Prune all cases when it's unnecessary to build these robots
         match robot_candidate:
             case 'ore':
