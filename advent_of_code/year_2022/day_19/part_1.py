@@ -50,7 +50,6 @@ class Blueprint:
                  obsidian_ore: int, obsidian_clay: int,
                  geode_ore: int, geode_obsidian: int):
         self.id = id
-        # robot costs
         self.robot_cost = {'ore'      : Ressource(ore=ore_ore),
                            'clay'     : Ressource(ore=clay_ore),
                            'obsidian' : Ressource(ore=obsidian_ore, clay=obsidian_clay),
@@ -70,11 +69,11 @@ class Factory:
         self.ressources = Ressource()
     
     @property
-    def quality_level(self):
+    def quality_level(self) -> int:
         return self.blueprint.id * self.max_geodes
 
     @cached_property
-    def max_ore_robots(self):
+    def max_ore_robots(self) -> int:
         """ Get upperbound for OreRobot production
 
         For pruning, since we can only make a robot per minute
@@ -90,7 +89,7 @@ class Factory:
         This upperbound begets efficient pruning"""
         return ((minutes - 1) * minutes) // 2
 
-    def explore(self, minutes: int):
+    def explore(self, minutes: int) -> Self:
         "DFS to determine max geodes that can be produced by current blueprint"
         self.minutes = minutes
         self.max_geodes = 0
@@ -99,7 +98,7 @@ class Factory:
             self._explore(minutes, robot_candidate, RobotCollection(), Ressource())
         return self
     
-    def _explore(self, minutes: int, robot_candidate: str, robots : RobotCollection, ressources: Ressource):
+    def _explore(self, minutes: int, robot_candidate: str, robots : RobotCollection, ressources: Ressource) -> None
         # Prune all cases when it's unnecessary to build these robots
         match robot_candidate:
             case 'ore':
@@ -122,7 +121,7 @@ class Factory:
             if self.robot_cost[robot_candidate] <= ressources:
                 # Spend & Make new robot
                 ressources -= self.robot_cost[robot_candidate]  # Spend ressources to make a robot
-                ressources += robots                       # Active robots round collection
+                ressources += robots                            # Active robots round collection
                 robots.welcome(robot_candidate)       
 
                 for next_robot_candidate in self.robot_specialties:
