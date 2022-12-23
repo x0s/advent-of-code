@@ -3,6 +3,8 @@ from operator import add, sub, mul, truediv
 from advent_of_code.config import get_input
 from advent_of_code.logging import log
 
+class NumberNotFound(KeyError):
+    """Raised when a monkey number cannot be found"""
 
 class SolutionOne:
 
@@ -17,11 +19,12 @@ class SolutionOne:
 
 
     def get_number(self, monkey: str):
-        if isinstance((number := self.monkey_number[monkey]), int):
-            return number
-        else:
+        if not monkey in self.monkey_number:
+            raise NumberNotFound(f"Value for monkey={monkey} not found")
+        if not isinstance((number := self.monkey_number[monkey]), (int, float)):
             do_operation, (monkey_a, monkey_b) = self.read_operation(number)
-            return do_operation(self.get_number(monkey_a), self.get_number(monkey_b))
+            number = do_operation(self.get_number(monkey_a), self.get_number(monkey_b))
+        return number
 
     
     def process(self, input_raw: str) -> int:
