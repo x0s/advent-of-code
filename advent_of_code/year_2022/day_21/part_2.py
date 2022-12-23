@@ -16,8 +16,8 @@ class SolutionTwo(SolutionOne):
     def inverse_operation(cls, monkey_moving: str, operation: str, from_the_right: bool) -> tuple[str, str]:
         """Solve 1rd order equation by making the monkey variable (either a or b) become monkey moving
         Example:
-            "gamma", "X + beta"    , False (X on the left so from_the_right is False) becomes
-            "X"    , "gamma - beta", False (we moved gamma on the left, returning False)
+            "gamma", "X + beta"     (X on the left so from_the_right is False) becomes
+            "X"    , "gamma - beta" (we moved gamma on the left, returning False)
         """
         match operation.split():
             # moving = a + b --> (b = moving - a) OR (a = moving - b)
@@ -106,6 +106,7 @@ class SolutionTwo(SolutionOne):
 
         # reverse all equations to move back up to root (updating monkey_numbers)
         self.reverse_operation('humn', key_treated=set())
+        # add root equals 0 so the 2 monkeys must yell the same number
         self.monkey_number['root'] = 0
         
         # Now the problem is nicely reframed, we look for the number we should yell :)
@@ -122,28 +123,3 @@ def main() -> int:
         return total
 if __name__ == "__main__":
     main()
-
-
-"""
-
-        monkey_as_key, operation, from_the_right = search_operation('humn') #next((monkey, op) for monkey,op in self.monkey_number.items() if isinstance(op, str) and op.startswith('humn'))
-        #del self.monkey_number[monkey_as_key] # necessary ?
-        # Now we invert the operation so "gvhn: humn - zbzz" becomes "humn: gvhn + zbzz"
-        # me = 'humn'
-        me, operation_inv, from_the_right = self.inverse_operation(monkey_as_key, operation, from_the_right)
-        self.monkey_number[me] = operation_inv
-        
-        # now the problem is that gvhn(monkey_as_key) became the new unknown variable, let's do it again
-        # found "lzwf: gvhn / vbzm"
-        monkey_found, operation, from_the_right = search_operation(monkey_as_key)
-        monkey_as_key, operation_inv, from_the_right = self.inverse_operation(monkey_found, operation, from_the_right)
-        self.monkey_number[monkey_as_key] = operation_inv
-
-        
-        monkey_as_key, operation_inv, from_the_right = self.inverse_operation(*search_operation(monkey_found))
-        self.monkey_number[monkey_as_key] = operation_inv
-
-
-
-
-"""
