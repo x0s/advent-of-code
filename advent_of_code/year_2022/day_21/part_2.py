@@ -47,7 +47,7 @@ class SolutionTwo(SolutionOne):
         - the operation (ie: "cczh / lfqf)
         - whether the monkey variable X is positioned as right operand or not (ie: True if X=lfqf)
         """
-        if exclude is None: exclude = set()
+        exclude = exclude or set()
 
         for monkey,operation in monkey_number.items():
             if isinstance(operation, str) and (X in operation) and (monkey not in exclude):
