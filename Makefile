@@ -25,7 +25,7 @@ endif
 # ie: make config TOKEN=ru=6544564c515s1c5ss32ds15
 .PHONY: config
 config:
-	@echo "token = '$(TOKEN)'" >> advent_of_code/config__.toml
+	@echo "token = '$(TOKEN)'" > advent_of_code/config.toml
 	@echo "Token saved in advent_of_code/config.toml"
 
 
