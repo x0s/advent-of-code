@@ -50,7 +50,12 @@ Launch the test and choose if you want the details of the test suite
 (advent)$ make test
 (advent)$ make test VERBOSE=1
 ```
+or testing only one day (in verbose mode)
+```
+(advent)$ make test_this DAY=2022/02
+```
 
+In case of doubt `make help` will cover you.
 
 ## Troubleshooting
 ### Mamba asking you to `mamba init`

@@ -8,6 +8,7 @@ help:
 	@echo "   config TOKEN=<TOKEN>          : Generate the config file"
 	@echo "   game WHEN=<YEAR>/<DAY>-<PART> : Launch a solution (ie: make game WHEN=2022/01-2)"
 	@echo "   test [VERBOSE=1]              : Launch the tests locally (pass VERBOSE to enumerate the tests)"
+	@echo "   test_this DAY=<YEAR>/<DAY>    : Launch the tests case covering only one day (ie: make test_this DAY=2022/02)"
 	@echo "   coverage                      : Generate & display test coverage report"
 	@echo "   clean                         : Delete python bytecode cache"
 
@@ -45,6 +46,16 @@ ifdef VERBOSE
 else
 	python -m unittest discover -s tests
 endif
+
+
+# Launch tests case for only one day (we suppose we want details/verbose here)
+# Example: "make test_this DAY=2022/02" will launch test covering day 2 of 2022
+.PHONY: test_this
+.ONESHELL:
+test_this:
+	@read AOC_YEAR AOC_DAY <<< $$(echo '$(DAY)' | perl -pe 's/(20\d{2})\/([01][0-9]|2[0-5])/$$1 $$2/')
+	python -m unittest -v tests/$$AOC_YEAR/test_day_$$AOC_DAY.py
+
 
 .PHONY: coverage
 coverage:
