@@ -39,17 +39,17 @@ class TestExamples(TestExamplesMain):
     def test_read_operation(self):
         self.assertEqual(part_1.SolutionOne.
             read_operation("drzm * dbpl"), (operator.mul, ("drzm", "dbpl")))
-        
+
         self.assertEqual(part_1.SolutionOne.
             read_operation("doug + dagg"), (operator.add, ("doug", "dagg")))
-        
+
         self.assertEqual(part_1.SolutionOne.
             read_operation("bull - dogg"), (operator.sub, ("bull", "dogg")))
-        
+
         self.assertEqual(part_1.SolutionOne.
             read_operation("glue / niak"), (operator.truediv, ("glue", "niak")))
-        
-        self.assertRaises(part_1.OperationNotFound, 
+
+        self.assertRaises(part_1.OperationNotFound,
             part_1.SolutionOne.read_operation, "monk ** kkey")
 
     def test_part2(self):
@@ -84,6 +84,9 @@ class TestExamples(TestExamplesMain):
         self.assertEqual(part_2.SolutionTwo.
             inverse_operation("gamma", "alpha * X", from_the_right=True),
                              ("X"    , "gamma / alpha"))
+
+        self.assertRaises(part_1.OperationNotFound,
+            part_2.SolutionTwo.inverse_operation, "gamma", "alpha ** X", from_the_right=True)
 
 if __name__ == "__main__":
     unittest.main()

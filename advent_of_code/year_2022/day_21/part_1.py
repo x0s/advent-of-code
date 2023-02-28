@@ -29,7 +29,7 @@ class SolutionOne:
 
     def get_number(self, monkey: str):
         if not monkey in self.monkey_number:
-            raise NumberNotFound(f"Value for {monkey = } not found")
+            raise NumberNotFound(f"Value for {monkey=} not found")
         if not isinstance((number := self.monkey_number[monkey]), (int, float)):
             do_operation, (monkey_a, monkey_b) = self.read_operation(number)
             number = do_operation(self.get_number(monkey_a), self.get_number(monkey_b))

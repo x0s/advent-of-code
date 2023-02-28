@@ -2,7 +2,9 @@ from typing import Iterator
 
 from advent_of_code.config import get_input
 from advent_of_code.logging import log
-from advent_of_code.year_2022.day_21.part_1 import SolutionOne, NumberNotFound
+from advent_of_code.year_2022.day_21.part_1 import (SolutionOne,
+                                                    NumberNotFound,
+                                                    OperationNotFound)
 
 
 class SolutionTwo(SolutionOne):
@@ -37,7 +39,7 @@ class SolutionTwo(SolutionOne):
                 else:              return monkey_a, f"{monkey_moving} / {monkey_b}"
         
             case _:
-                raise ValueError(f"operation {operation} not inverted")
+                raise OperationNotFound(f"{operation=!s} not inverted")
 
     @staticmethod
     def search_operation(X: str, monkey_number: str, exclude: set = None) -> Iterator[tuple[str, str, bool]]:
