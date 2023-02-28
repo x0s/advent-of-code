@@ -1,3 +1,4 @@
+import operator
 import unittest
 from contextlib import contextmanager
 
@@ -34,6 +35,22 @@ class TestExamples(TestExamplesMain):
     def test_part1(self):
         """Test if example from part 1 problem statement works"""
         self.assertEqual(part_1.main(), 152)
+
+    def test_read_operation(self):
+        self.assertEqual(part_1.SolutionOne.
+            read_operation("drzm * dbpl"), (operator.mul, ("drzm", "dbpl")))
+        
+        self.assertEqual(part_1.SolutionOne.
+            read_operation("doug + dagg"), (operator.add, ("doug", "dagg")))
+        
+        self.assertEqual(part_1.SolutionOne.
+            read_operation("bull - dogg"), (operator.sub, ("bull", "dogg")))
+        
+        self.assertEqual(part_1.SolutionOne.
+            read_operation("glue / niak"), (operator.truediv, ("glue", "niak")))
+        
+        self.assertRaises(part_1.OperationNotFound, 
+            part_1.SolutionOne.read_operation, "monk ** kkey")
 
     def test_part2(self):
         """Test if example from part 2 problem statement works"""

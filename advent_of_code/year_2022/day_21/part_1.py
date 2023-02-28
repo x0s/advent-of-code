@@ -1,10 +1,14 @@
 from operator import add, sub, mul, truediv
+from textwrap import dedent
 
 from advent_of_code.config import get_input
 from advent_of_code.logging import log
 
 class NumberNotFound(KeyError):
     """Raised when a monkey number cannot be found"""
+
+class OperationNotFound(ValueError):
+    """Raised when an operation cannot be found"""
 
 class SolutionOne:
 
@@ -15,12 +19,17 @@ class SolutionOne:
             case [monkey_a, '-', monkey_b]: operator = sub
             case [monkey_a, '*', monkey_b]: operator = mul
             case [monkey_a, '/', monkey_b]: operator = truediv
+            case _:
+                raise OperationNotFound(dedent(f"""
+                        {operation = } cannot be extracted.
+                        Expected format: '<string> <(+|-|*|/)> <string>'
+                        Example: 'drzm * dbpl'"""))
         return operator, (monkey_a, monkey_b)
 
 
     def get_number(self, monkey: str):
         if not monkey in self.monkey_number:
-            raise NumberNotFound(f"Value for monkey={monkey} not found")
+            raise NumberNotFound(f"Value for {monkey = } not found")
         if not isinstance((number := self.monkey_number[monkey]), (int, float)):
             do_operation, (monkey_a, monkey_b) = self.read_operation(number)
             number = do_operation(self.get_number(monkey_a), self.get_number(monkey_b))
