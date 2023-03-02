@@ -1,10 +1,12 @@
 SHELL := /bin/bash
 
-COMMANDS := help install config game test test_this coverage clean
-.PHONY: $(COMMANDS)
+AOC_TARGETS := help install config game test test_this coverage clean
+.PHONY: $(AOC_TARGETS)
+
+all: help
 
 help:
-	@echo "Commands:"
+	@echo "Available targets:"
 	@echo "   install [EDIT=1]              : Install the package (pass EDIT for editable mode)"
 	@echo "   config TOKEN=<TOKEN>          : Generate the config file"
 	@echo "   game WHEN=<YEAR>/<DAY>-<PART> : Launch a solution (ie: make game WHEN=2022/01-2)"
