@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 AOC_TARGETS := help install config game test test_this coverage clean
-.PHONY: $(AOC_TARGETS)
+.PHONY: $(AOC_TARGETS) build run
 
 all: help
 
@@ -23,12 +23,28 @@ ifdef EDIT
 else
 	python -m pip install .
 endif
+# make "make_in_container" command available when conda env is activated
+ifdef CONDA_PREFIX
+	@$(eval PATH_ALIAS := ${CONDA_PREFIX}/etc/conda/activate.d/aliases_.sh)
+	@mkdir -p ${CONDA_PREFIX}/etc/conda/activate.d
+	@echo "#!/bin/bash" >> $(PATH_ALIAS)
+	@echo "alias make_in_container='make -f Makefile_docker'" >> $(PATH_ALIAS)
+	@source $(PATH_ALIAS)
+endif
+
+
 
 
 # ie: make config TOKEN=ru=6544564c515s1c5ss32ds15
 config:
 	@echo "token = '$(TOKEN)'" > advent_of_code/config.toml
 	@echo "Token saved in advent_of_code/config.toml"
+
+build:
+	docker build --tag aoc-image .
+
+run:
+	docker run -it --detach aoc-image bash
 
 
 # "make game WHEN=2021/17-2" will launch part 2 of the game issued the 17th, December 2021
