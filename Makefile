@@ -28,7 +28,7 @@ ifdef CONDA_PREFIX
 	@$(eval PATH_ALIAS := ${CONDA_PREFIX}/etc/conda/activate.d/aliases_.sh)
 	@mkdir -p ${CONDA_PREFIX}/etc/conda/activate.d
 	@echo "#!/bin/bash" >> $(PATH_ALIAS)
-	@echo "alias make_in_container='make -f Makefile_docker'" >> $(PATH_ALIAS)
+	@echo "alias make_in_container='make -f Makefile.docker'" >> $(PATH_ALIAS)
 	@source $(PATH_ALIAS)
 endif
 

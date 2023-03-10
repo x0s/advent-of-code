@@ -11,9 +11,9 @@ AOC_ARGS = EDIT TOKEN WHEN VERBOSE DAY
 # Retrieve the AOC targets from main Makefile
 # inspired from https://stackoverflow.com/a/26339924/3581903
 AOC_TARGETS := $(shell LC_ALL=C make -pRrq -f Makefile : 2>/dev/null \
-				| awk -v RS= -F: '/(^|\n)\# Files(\n|$$)/,/(^|\n)\# Finished Make data base/ {if ($$1 !~ "^[\#.]") {print $$1}}' \
-				| sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' \
-				| xargs | tr -d :)
+		| awk -v RS= -F: '/(^|\n)\# Files(\n|$$)/,/(^|\n)\# Finished Make data base/ {if ($$1 !~ "^[\#.]") {print $$1}}' \
+		| sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' \
+		| xargs | tr -d :)
 
 .PHONY : $(AOC_TARGETS) list_targets
 
