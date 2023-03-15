@@ -30,7 +30,7 @@ config:
 	@echo "Token saved in advent_of_code/config.toml"
 
 build:
-	@docker build --tag aoc-image .
+	@docker build --tag aoc-image -f Dockerfile .
 # make "make_in_container" command available when conda env is activated
 ifdef CONDA_PREFIX
 	@$(eval PATH_ALIAS := ${CONDA_PREFIX}/etc/conda/activate.d/aliases_.sh)
