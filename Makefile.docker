@@ -17,13 +17,10 @@ AOC_TARGETS := $(shell LC_ALL=C make -pRrq -f Makefile : 2>/dev/null \
 
 .PHONY : $(AOC_TARGETS) list_targets
 
-all: help
-
-list_targets:
-	@echo $(AOC_TARGETS)
-
 # Forward any AOC_TARGET to the container
 # ie: "make_in_container test VERBOSE=1" is run as "make test VERBOSE=1" in the container
 $(AOC_TARGETS):
 	@docker run -it ${NAME} make $@ $(call get_args,$@)
 
+list-targets:
+	@echo $(AOC_TARGETS)
