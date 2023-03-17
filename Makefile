@@ -14,6 +14,10 @@ help:
 	@echo "   clean                         : Delete python bytecode cache"
 
 
+##########################################################################
+# Setting up
+##########################################################################
+
 # Install the package in editable mode or not
 .PHONY: install
 install:
@@ -41,6 +45,11 @@ ifdef CONDA_PREFIX
 	@source $(PATH_ALIAS)
 endif
 
+
+##########################################################################
+# Running the app
+##########################################################################
+
 .PHONY: run
 run:
 	@docker run -it --detach aoc-image bash
@@ -53,6 +62,10 @@ game:
 	@read AOC_YEAR AOC_DAY AOC_PART <<< $$(echo '$(WHEN)' | perl -pe 's/(20\d{2})\/([01][0-9]|2[0-5])-([12])/$$1 $$2 $$3/')
 	python advent_of_code/year_$$AOC_YEAR/day_$$AOC_DAY/part_$$AOC_PART.py
 
+
+##########################################################################
+# Testing / Cleaning
+##########################################################################
 
 # Launch the tests with verbose or not
 .PHONY: test
