@@ -1,9 +1,9 @@
 # Tag of docker image
 NAME := aoc-image
 
-# Extract valid arguments and passed them with their value
+# Extract valid arguments and pass them with their value
 # ie: calling "make_in_container game WHEN=2022/01-1" will result in passing "WHEN=2022/01-1"
-get_args = $(foreach a,$(AOC_ARGS),$(if $(value $a),$a=$($a)))
+get_args = $(foreach arg,$(AOC_ARGS),$(if $(value $(arg)),$(arg)=$($(arg))))
 
 # Arguments to be passed to targets accordin to main Makefile
 AOC_ARGS = EDIT TOKEN WHEN VERBOSE DAY
@@ -20,7 +20,7 @@ AOC_TARGETS := $(shell LC_ALL=C make -pRrq -f Makefile : 2>/dev/null \
 # Forward any AOC_TARGET to the container
 # ie: "make_in_container test VERBOSE=1" is run as "make test VERBOSE=1" in the container
 $(AOC_TARGETS):
-	@docker run -it ${NAME} make $@ $(call get_args,$@)
+	@docker run -it ${NAME} make $@ $(call get_args)
 
 list-targets:
 	@echo $(AOC_TARGETS)
