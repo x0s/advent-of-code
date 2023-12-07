@@ -11,13 +11,19 @@ class Coord:
     j: int   # index of starting column
     jc: int  # index of ending column + 1 (= j + length)
 
+
 @dataclass
 class Item:
     value: str
-    is_star: bool = False
+    is_star: bool = field(init=False)
     adjacents : list = field(default_factory=list) # if an item is adjacent to a number (only for * chars)
 
+    def __post_init__(self):
+        self.is_star = (self.value == '*')
+
+
 HeapType = dict[Coord, Item]
+
 
 def drop_line(heap: HeapType, line_i: int) -> HeapType:
     """Remove from the heap elements recorded in line i.
@@ -48,7 +54,7 @@ class SolutionOne:
                 if((value := match.group()).isdigit()): # Record value
                     heap_to_check[coord] = Item(value)
                 else:
-                    heap_char[coord] = Item(value, is_star=(value=='*'))           # Record coord of char
+                    heap_char[coord] = Item(value)           # Record coord of char
             # drop lines that are too far (numbers not connected and every character)
             _, heap_char_removed = drop_line(heap_to_check, i-2), drop_line(heap_char, i-2)
             # At removal, we check if gears has been tied to star(*) char, and save
